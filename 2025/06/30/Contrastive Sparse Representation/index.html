@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Contrastive Sparse Representation | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Paper URL: https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2503.01776Code URL: https:&#x2F;&#x2F;github.com&#x2F;neilwen987&#x2F;CSR_Adaptive_Rep Conference: ICML’25 Oral  TL;DRThis paper introduces CSR, an effective learning method for sparse a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Contrastive Sparse Representation">
+<meta property="og:url" content="http://example.com/2025/06/30/Contrastive%20Sparse%20Representation/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Paper URL: https:&#x2F;&#x2F;arxiv.org&#x2F;pdf&#x2F;2503.01776Code URL: https:&#x2F;&#x2F;github.com&#x2F;neilwen987&#x2F;CSR_Adaptive_Rep Conference: ICML’25 Oral  TL;DRThis paper introduces CSR, an effective learning method for sparse a">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/MRL.png">
+<meta property="og:image" content="http://example.com/images/CSR.png">
+<meta property="article:published_time" content="2025-06-30T12:29:51.164Z">
+<meta property="article:modified_time" content="2025-07-02T05:43:35.079Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="vision-language-model">
+<meta property="article:tag" content="machine-learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/MRL.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Contrastive Sparse Representation" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/06/30/Contrastive%20Sparse%20Representation/" class="article-date">
+  <time class="dt-published" datetime="2025-06-30T12:29:51.164Z" itemprop="datePublished">2025-06-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Contrastive Sparse Representation
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><strong>Paper URL: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2503.01776">https://arxiv.org/pdf/2503.01776</a></strong><br><strong>Code URL: <a target="_blank" rel="noopener" href="https://github.com/neilwen987/CSR_Adaptive_Rep">https://github.com/neilwen987/CSR_Adaptive_Rep</a></strong></p>
+<p><strong>Conference: ICML’25 Oral</strong></p>
+</blockquote>
+<h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><p>This paper introduces <strong>CSR</strong>, an effective learning method for sparse adaptive representations. It combines a task-specific sparse contrastive learning loss with a reconstructive loss to maintain overall embedding quality.</p>
+<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2205.13147"><strong>MRL</strong></a>, as an existing method to compress representations, truncates the linear layers into a set of target sizes to reflect representations of various dimensions.<br><img src="/images/MRL.png" alt="MRL.png"><br>However, MRL faces two key constraints:</p>
+<ol>
+<li>it requires (full) training of the backbone parameters;</li>
+<li>its performance often deteriorates a lot under small hidden dimensions.<h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><strong>CSR</strong> combines <strong><em>sparse contrastive learning</em></strong> and <strong><em>sparse autoencoding</em></strong> to maintain overall embedding quality.<br><img src="/images/CSR.png" alt="CSR.png"><h2 id="Sparse-Autoencoders-SAEs"><a href="#Sparse-Autoencoders-SAEs" class="headerlink" title="Sparse Autoencoders(SAEs)"></a>Sparse Autoencoders(SAEs)</h2><strong>SAEs</strong> aim to extract a sparse representation $z_k$ by learning to reconstruct the dense feature from $z_k$.</li>
+</ol>
+<p>Denote the (weights, bias) of encoder and decoder as $(W_{enc},b_{enc})$ and $(W_{dec},b_{pre})$. And $f(x)$ represents the dense feature of input $x$.</p>
+<h3 id="Encoding"><a href="#Encoding" class="headerlink" title="Encoding"></a>Encoding</h3><script type="math/tex; mode=display">
+    z_k:=\sigma^+(\text{TopK}(W_{enc}(f(x)-b_{pre})+b_{enc}))</script><p>$\text{TopK}$ gets $K$ largest values. $\sigma^+(\cdot)=max(0,\cdot)$ is the ReLU activation.<br>This process encodes the dense representations into sparse representations, with only $K$ non-zero values.</p>
+<h3 id="Decoding"><a href="#Decoding" class="headerlink" title="Decoding"></a>Decoding</h3><script type="math/tex; mode=display">
+    \widehat{f(x)_k}:=W_{dec}z_k+b_{pre}</script><p>This process decodes and reconstructs the original embedding using sparse representation $z_k$. To make $\widehat{f(x)_k}$ as similar to $f(x)$ as possible, it uses L2 reconstruction loss as the main training objective:</p>
+<script type="math/tex; mode=display">
+    \mathcal{L}(k)=||f(x) - \widehat{f(x)_k}||_2^2.</script><h3 id="Dead-Latents"><a href="#Dead-Latents" class="headerlink" title="Dead Latents"></a><em>Dead Latents</em></h3><p>As the large number of zeros in sparse representations, a lot of latent dimensions remain inactive during training - a phenomenon called the <strong><em>Dead Latents</em></strong>. This is one of the reasons of the performance degradation.<br>To mitigate this issue, an auxiliary loss $\mathcal{L}_{aux}$ and Multi-TopK losses are proposed.</p>
+<h4 id="Auxiliary-Loss"><a href="#Auxiliary-Loss" class="headerlink" title="Auxiliary Loss"></a>Auxiliary Loss</h4><script type="math/tex; mode=display">
+    \mathcal{L}_{aux} = ||e-\hat{e}||_2^2,</script><p>where $e=f(x)-\widehat{f(x)}$, and $\hat{e}=W_{dec}z$. This is the forced reconstruction using the top-$k_{aux}$ dead latents.</p>
+<h4 id="Multi-TopK-Losses"><a href="#Multi-TopK-Losses" class="headerlink" title="Multi-TopK Losses"></a>Multi-TopK Losses</h4><p>An extra $4k$ reconstruction is added.</p>
+<p>The overall construction loss is</p>
+<script type="math/tex; mode=display">
+    \mathcal{L}_{recon}=\mathcal{L}(k)+\frac{1}{8}\mathcal{L}(4k)+\beta\mathcal{L}_{aux}.</script><h2 id="Sparse-Contrastive-Learning"><a href="#Sparse-Contrastive-Learning" class="headerlink" title="Sparse Contrastive Learning"></a>Sparse Contrastive Learning</h2><p>Simply reconstruction is not enough to make sparse representations distinguishable. So contrastive learning is introduced to enhance the semantic discriminative power of sparse representations.</p>
+<p>Supposing batch size $\mathcal{B}$. $z_i$ represents the $i$-th sample in the batch. The contrastive loss is defined as</p>
+<script type="math/tex; mode=display">
+    \mathcal{L}_{cl}=-\frac{1}{\mathcal{B}}\sum^{\mathcal{B}}_{i=1}\log{\frac{\exp(z_i^Tz_i)}{\exp(z_i^Tz_i)+\sum_{j\ne i}^{\mathcal{B}}\exp(z_i^Tz_j)}}</script><p>This makes each latent representations closer to the positive samples (itself) and further to the negative samples (other representations).<br>Notice that all the $z$ are non-negative by $\text{ReLU} + \text{TopK}$ selection, thus this contrastive loss is a variant of the Non-negative Contrastive Loss (NCL).</p>
+<blockquote>
+<p><strong><em>Theorem 5.</em></strong> <em>Under mild conditions, the solution $\phi(x)$ is the unique solution to the NCL objective. As a result, NCL features are identifiable and disentangled.</em></p>
+</blockquote>
+<p>According to the above theorem, the sparse contrastive loss tends to relate each latent dimension to a specific stable and distinguishable semantic factor. It also helps mitigate the dead latents issue.</p>
+<h2 id="Overall-Training-Objectiveness"><a href="#Overall-Training-Objectiveness" class="headerlink" title="Overall Training Objectiveness"></a>Overall Training Objectiveness</h2><script type="math/tex; mode=display">
+    \mathcal{L}_{CSR}=\mathcal{L}_{recon}+\gamma\mathcal{L}_{ncl}.</script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/06/30/Contrastive%20Sparse%20Representation/" data-id="cmcljgrlo00018ify0qggfqo4" data-title="Contrastive Sparse Representation" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/" rel="tag">machine-learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vision-language-model/" rel="tag">vision-language-model</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/07/01/Unsupervised%20Continual%20Domain%20Shift%20Learning%20with%20Multi-Prototype%20Modeling/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Unsupervised Continual Domain Shift Learning with Multi-Prototype Modeling
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/06/23/Adversarial%20Pre-training%20and%20Instruction%20Tuning%20for%20Improving%20Vision-Language%20Model%20Robustness/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Adversarial Pre-training and Instruction Tuning for Improving Vision-Language Model Robustness</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/" rel="tag">machine-learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vision-language-model/" rel="tag">vision-language-model</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/machine-learning/" style="font-size: 20px;">machine-learning</a> <a href="/tags/vision-language-model/" style="font-size: 10px;">vision-language-model</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/01/Unsupervised%20Continual%20Domain%20Shift%20Learning%20with%20Multi-Prototype%20Modeling/">Unsupervised Continual Domain Shift Learning with Multi-Prototype Modeling</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/30/Contrastive%20Sparse%20Representation/">Contrastive Sparse Representation</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/23/Adversarial%20Pre-training%20and%20Instruction%20Tuning%20for%20Improving%20Vision-Language%20Model%20Robustness/">Adversarial Pre-training and Instruction Tuning for Improving Vision-Language Model Robustness</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/21/OOD%20Detection/">OOD Detection</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>
