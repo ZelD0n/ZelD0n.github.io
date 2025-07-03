@@ -71,6 +71,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Learning Clustering-Based Prototypes for Compositional Zero-Shot Learning" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/07/02/Learning%20Clustering-Based%20Prototypes%20for%20Compositional%20Zero-Shot%20Learning/" class="article-date">
+  <time class="dt-published" datetime="2025-07-02T07:52:33.603Z" itemprop="datePublished">2025-07-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/07/02/Learning%20Clustering-Based%20Prototypes%20for%20Compositional%20Zero-Shot%20Learning/">Learning Clustering-Based Prototypes for Compositional Zero-Shot Learning</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><strong>Paper URL: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2502.06501">https://arxiv.org/pdf/2502.06501</a></strong><br><strong>Code URL: <a target="_blank" rel="noopener" href="https://github.com/quhongyu/ClusPro">https://github.com/quhongyu/ClusPro</a></strong></p>
+<p><strong>Conference: ICLR’25</strong></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/07/02/Learning%20Clustering-Based%20Prototypes%20for%20Compositional%20Zero-Shot%20Learning/" data-id="cmcn1f50g00069cfy96hj9tee" data-title="Learning Clustering-Based Prototypes for Compositional Zero-Shot Learning" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-vision/" rel="tag">computer-vision</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/czsl/" rel="tag">czsl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vision-language-model/" rel="tag">vision-language-model</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Unsupervised Continual Domain Shift Learning with Multi-Prototype Modeling" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/07/01/Unsupervised%20Continual%20Domain%20Shift%20Learning%20with%20Multi-Prototype%20Modeling/" class="article-date">
@@ -98,12 +142,23 @@
 <p><strong>Conference: CVPR’25</strong></p>
 </blockquote>
 <h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><p>To overcome the adaptivity gap issue in Unsupervised Continual Domain Shift Learning, the paper proposes <strong>Multi-Prototype Modeling</strong> (<strong>MPM</strong>) , a method comprises two main parts: <strong>Multi-Prototype Learning</strong> (<strong>MPL</strong>) and <strong>Bi-Level Graph Enhancer</strong> (<strong>BiGE</strong>).</p>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="Unsupervised-Continual-Domain-Shift-Learning"><a href="#Unsupervised-Continual-Domain-Shift-Learning" class="headerlink" title="Unsupervised Continual Domain Shift Learning"></a>Unsupervised Continual Domain Shift Learning</h2><p><strong>Unsupervised Continual Domain Shift Learning</strong> (<strong>UCDSL</strong>) aims to adapt a pre-trained model to dynamically shifting target domains without access to labeled data from either the source or target domains.<br>Existing methods attempt to learn a universal classifier for all domains by enforcing feature alignment across different domains. However, this assumption is not guaranteed and the classifier may deviate significantly from the optimal classifier for a specific target domain.</p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="What-is-Unsupervised-Continual-Domain-Shift-Learning-UCDSL"><a href="#What-is-Unsupervised-Continual-Domain-Shift-Learning-UCDSL" class="headerlink" title="What is Unsupervised Continual Domain Shift Learning (UCDSL)?"></a>What is Unsupervised Continual Domain Shift Learning (UCDSL)?</h2><p><strong>Unsupervised Continual Domain Shift Learning</strong> (<strong>UCDSL</strong>) aims to adapt a pre-trained model to dynamically shifting target domains without access to labeled data from either the source or target domains.</p>
+<h2 id="Existing-Methods-of-UCDSL"><a href="#Existing-Methods-of-UCDSL" class="headerlink" title="Existing Methods of UCDSL"></a>Existing Methods of UCDSL</h2><p>Existing methods attempt to learn a universal classifier for all domains by enforcing feature alignment across different domains. ==<strong>However, this assumption is not guaranteed and the classifier may deviate significantly from the optimal classifier for a specific target domain.</strong>==</p>
+<p><img src="/images/MPM_motivation.png" alt="motivation"></p>
+<p>As shown in the left image, existing methods pursue the alignment of the same classes across all domains. This leads to the deviation from the optimal classifier for each domain, causing mis-classification.</p>
+<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>To address this issue, the paper ==<strong>introduces multiple domain-specific prototypes to enrich the hypothesis space and achieve more comprehensive representations</strong>==, as shown in the right image.</p>
+<p>This brings the following benefits:</p>
+<ol>
+<li>MPL enriches the hypothesis space by introducing multiple harmoniously composited domain-specific prototypes, leading to improved generalization for unseen domains. </li>
+<li>MPL preserves complementary information from multiple domains to reduce the adaptivity gap, resulting in enhanced domain adaptation ability. </li>
+<li>During adaptation, MPL explicitly preserves knowledge from previously encountered domains by retaining the corresponding prototypes.</li>
+</ol>
+<p>To enhance the feature representations, <strong>Bi-Level Graph Enhancer</strong> is introduced as well. It leverages complementary information from two orthogonal perspectives: domain-wise and category-wise.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/07/01/Unsupervised%20Continual%20Domain%20Shift%20Learning%20with%20Multi-Prototype%20Modeling/" data-id="cmcllg10o000bj5fy91nt6pwp" data-title="Unsupervised Continual Domain Shift Learning with Multi-Prototype Modeling" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/07/01/Unsupervised%20Continual%20Domain%20Shift%20Learning%20with%20Multi-Prototype%20Modeling/" data-id="cmcn1f50g00059cfydu2k0o78" data-title="Unsupervised Continual Domain Shift Learning with Multi-Prototype Modeling" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -174,7 +229,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/30/Contrastive%20Sparse%20Representation/" data-id="cmcllg10m0001j5fy8jw64dw8" data-title="Contrastive Sparse Representation" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/30/Contrastive%20Sparse%20Representation/" data-id="cmcn1f50c00009cfy5rmx8rw3" data-title="Contrastive Sparse Representation" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -224,7 +279,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/23/Adversarial%20Pre-training%20and%20Instruction%20Tuning%20for%20Improving%20Vision-Language%20Model%20Robustness/" data-id="cmcllg10j0000j5fy8q70htgv" data-title="Adversarial Pre-training and Instruction Tuning for Improving Vision-Language Model Robustness" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/23/Adversarial%20Pre-training%20and%20Instruction%20Tuning%20for%20Improving%20Vision-Language%20Model%20Robustness/" data-id="cmcn1f50g00089cfyg2vx6gce" data-title="Adversarial Pre-training and Instruction Tuning for Improving Vision-Language Model Robustness" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -318,7 +373,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/21/OOD%20Detection/" data-id="cmcllg10n0003j5fyguk82dyj" data-title="OOD Detection" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/21/OOD%20Detection/" data-id="cmcn1f50h000f9cfyc5jghau3" data-title="OOD Detection" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -345,7 +400,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/" rel="tag">machine-learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vision-language-model/" rel="tag">vision-language-model</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/computer-vision/" rel="tag">computer-vision</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/czsl/" rel="tag">czsl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/" rel="tag">machine-learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vision-language-model/" rel="tag">vision-language-model</a></li></ul>
     </div>
   </div>
 
@@ -355,7 +410,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/machine-learning/" style="font-size: 20px;">machine-learning</a> <a href="/tags/vision-language-model/" style="font-size: 10px;">vision-language-model</a>
+      <a href="/tags/computer-vision/" style="font-size: 10px;">computer-vision</a> <a href="/tags/czsl/" style="font-size: 10px;">czsl</a> <a href="/tags/machine-learning/" style="font-size: 20px;">machine-learning</a> <a href="/tags/vision-language-model/" style="font-size: 20px;">vision-language-model</a>
     </div>
   </div>
 
@@ -375,6 +430,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2025/07/02/Learning%20Clustering-Based%20Prototypes%20for%20Compositional%20Zero-Shot%20Learning/">Learning Clustering-Based Prototypes for Compositional Zero-Shot Learning</a>
+          </li>
         
           <li>
             <a href="/2025/07/01/Unsupervised%20Continual%20Domain%20Shift%20Learning%20with%20Multi-Prototype%20Modeling/">Unsupervised Continual Domain Shift Learning with Multi-Prototype Modeling</a>

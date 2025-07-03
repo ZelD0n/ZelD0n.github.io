@@ -13,11 +13,13 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Paper URL: https:&#x2F;&#x2F;openaccess.thecvf.com&#x2F;content&#x2F;CVPR2025&#x2F;papers&#x2F;Sun_Unsupervised_Continual_Domain_Shift_Learning_with_Multi-Prototype_Modeling_CVPR_2025_paper.pdfCode URL: TBD Conference: CVPR’25  T">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/MPM_motivation.png">
 <meta property="article:published_time" content="2025-07-01T09:15:01.993Z">
-<meta property="article:modified_time" content="2025-07-02T05:43:16.754Z">
+<meta property="article:modified_time" content="2025-07-02T07:43:49.096Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="machine-learning">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/MPM_motivation.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -101,12 +103,23 @@
 <p><strong>Conference: CVPR’25</strong></p>
 </blockquote>
 <h1 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h1><p>To overcome the adaptivity gap issue in Unsupervised Continual Domain Shift Learning, the paper proposes <strong>Multi-Prototype Modeling</strong> (<strong>MPM</strong>) , a method comprises two main parts: <strong>Multi-Prototype Learning</strong> (<strong>MPL</strong>) and <strong>Bi-Level Graph Enhancer</strong> (<strong>BiGE</strong>).</p>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="Unsupervised-Continual-Domain-Shift-Learning"><a href="#Unsupervised-Continual-Domain-Shift-Learning" class="headerlink" title="Unsupervised Continual Domain Shift Learning"></a>Unsupervised Continual Domain Shift Learning</h2><p><strong>Unsupervised Continual Domain Shift Learning</strong> (<strong>UCDSL</strong>) aims to adapt a pre-trained model to dynamically shifting target domains without access to labeled data from either the source or target domains.<br>Existing methods attempt to learn a universal classifier for all domains by enforcing feature alignment across different domains. However, this assumption is not guaranteed and the classifier may deviate significantly from the optimal classifier for a specific target domain.</p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="What-is-Unsupervised-Continual-Domain-Shift-Learning-UCDSL"><a href="#What-is-Unsupervised-Continual-Domain-Shift-Learning-UCDSL" class="headerlink" title="What is Unsupervised Continual Domain Shift Learning (UCDSL)?"></a>What is Unsupervised Continual Domain Shift Learning (UCDSL)?</h2><p><strong>Unsupervised Continual Domain Shift Learning</strong> (<strong>UCDSL</strong>) aims to adapt a pre-trained model to dynamically shifting target domains without access to labeled data from either the source or target domains.</p>
+<h2 id="Existing-Methods-of-UCDSL"><a href="#Existing-Methods-of-UCDSL" class="headerlink" title="Existing Methods of UCDSL"></a>Existing Methods of UCDSL</h2><p>Existing methods attempt to learn a universal classifier for all domains by enforcing feature alignment across different domains. ==<strong>However, this assumption is not guaranteed and the classifier may deviate significantly from the optimal classifier for a specific target domain.</strong>==</p>
+<p><img src="/images/MPM_motivation.png" alt="motivation"></p>
+<p>As shown in the left image, existing methods pursue the alignment of the same classes across all domains. This leads to the deviation from the optimal classifier for each domain, causing mis-classification.</p>
+<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>To address this issue, the paper ==<strong>introduces multiple domain-specific prototypes to enrich the hypothesis space and achieve more comprehensive representations</strong>==, as shown in the right image.</p>
+<p>This brings the following benefits:</p>
+<ol>
+<li>MPL enriches the hypothesis space by introducing multiple harmoniously composited domain-specific prototypes, leading to improved generalization for unseen domains. </li>
+<li>MPL preserves complementary information from multiple domains to reduce the adaptivity gap, resulting in enhanced domain adaptation ability. </li>
+<li>During adaptation, MPL explicitly preserves knowledge from previously encountered domains by retaining the corresponding prototypes.</li>
+</ol>
+<p>To enhance the feature representations, <strong>Bi-Level Graph Enhancer</strong> is introduced as well. It leverages complementary information from two orthogonal perspectives: domain-wise and category-wise.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/07/01/Unsupervised%20Continual%20Domain%20Shift%20Learning%20with%20Multi-Prototype%20Modeling/" data-id="cmcllg10o000bj5fy91nt6pwp" data-title="Unsupervised Continual Domain Shift Learning with Multi-Prototype Modeling" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/07/01/Unsupervised%20Continual%20Domain%20Shift%20Learning%20with%20Multi-Prototype%20Modeling/" data-id="cmcn1f50g00059cfydu2k0o78" data-title="Unsupervised Continual Domain Shift Learning with Multi-Prototype Modeling" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -117,6 +130,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2025/07/02/Learning%20Clustering-Based%20Prototypes%20for%20Compositional%20Zero-Shot%20Learning/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Learning Clustering-Based Prototypes for Compositional Zero-Shot Learning
+        
+      </div>
+    </a>
   
   
     <a href="/2025/06/30/Contrastive%20Sparse%20Representation/" id="article-nav-older" class="article-nav-link-wrap">
@@ -141,7 +163,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/" rel="tag">machine-learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vision-language-model/" rel="tag">vision-language-model</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/computer-vision/" rel="tag">computer-vision</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/czsl/" rel="tag">czsl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/" rel="tag">machine-learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vision-language-model/" rel="tag">vision-language-model</a></li></ul>
     </div>
   </div>
 
@@ -151,7 +173,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/machine-learning/" style="font-size: 20px;">machine-learning</a> <a href="/tags/vision-language-model/" style="font-size: 10px;">vision-language-model</a>
+      <a href="/tags/computer-vision/" style="font-size: 10px;">computer-vision</a> <a href="/tags/czsl/" style="font-size: 10px;">czsl</a> <a href="/tags/machine-learning/" style="font-size: 20px;">machine-learning</a> <a href="/tags/vision-language-model/" style="font-size: 20px;">vision-language-model</a>
     </div>
   </div>
 
@@ -171,6 +193,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2025/07/02/Learning%20Clustering-Based%20Prototypes%20for%20Compositional%20Zero-Shot%20Learning/">Learning Clustering-Based Prototypes for Compositional Zero-Shot Learning</a>
+          </li>
         
           <li>
             <a href="/2025/07/01/Unsupervised%20Continual%20Domain%20Shift%20Learning%20with%20Multi-Prototype%20Modeling/">Unsupervised Continual Domain Shift Learning with Multi-Prototype Modeling</a>
